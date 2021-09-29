@@ -42,14 +42,14 @@ const CartIcon = styled.div`
         background: #46bc8f;
         border-radius: 100%;
         font-size: 13px;
-        line-height: 12px;
+        line-height: 1.3;
         width: 14px;
         height: 14px;
         color: #fff;
         text-align: center;
 
         @media screen and (min-width: 992px) {
-            line-height: 16px;
+            line-height: 1.5;
             width: 18px;
             height: 18px;
             bottom: -10px;
