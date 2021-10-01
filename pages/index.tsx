@@ -9,7 +9,7 @@ const Home: NextPage = () => {
                 <title>Personalised nutrition from Vitl</title>
                 <meta
                     name="description"
-                    content="eel 100% more often with filler-free, non-GMO nutritional supplements made from the highest quality vitamins &amp; minerals to keep your body functioning its best."
+                    content="Feel 100% more often with filler-free, non-GMO nutritional supplements made from the highest quality vitamins &amp; minerals to keep your body functioning its best."
                 />
                 <link
                     rel="icon"
