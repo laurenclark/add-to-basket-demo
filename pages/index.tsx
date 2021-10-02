@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import { gql } from "@apollo/client";
 import styled from "styled-components";
 import client from "../lib/apolloClient";
+import dummyImage from "../public/images/dummy-bottle.png";
 
 const Main = styled.main`
     margin: 2rem auto 4rem;
@@ -80,9 +81,11 @@ const Home: NextPage = ({ products }: any) => {
                         <ProductCard key={product!.id}>
                             <strong>{product!.name}</strong> <br />
                             <Image
+                                blurDataURL="../public/images/dummy-bottle-loader.png"
+                                placeholder="blur"
                                 width="189"
                                 height="189"
-                                src="/images/dummy-bottle.png"
+                                src={dummyImage}
                             />
                             {product.price.toLocaleString("en-gb", {
                                 style: "currency",
