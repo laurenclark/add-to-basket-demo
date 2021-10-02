@@ -59,7 +59,6 @@ const Button = styled.button`
 `;
 
 const Home: NextPage = ({ products }: any) => {
-    console.log("products", products);
     return (
         <>
             <Head>
