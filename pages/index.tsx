@@ -43,7 +43,6 @@ const Button = styled.button`
     padding: 0 20px;
     min-width: 160px;
     cursor: pointer;
-    outline: 0 !important;
     transition: 0.2s all cubic-bezier(0.25, 0.46, 0.45, 0.94);
     display: inline-flex;
     padding-left: 15px;
@@ -59,7 +58,7 @@ const Button = styled.button`
     }
 `;
 
-const Home: NextPage = ({ products }: any) => {
+const Home: NextPage = ({ products, currency }: any) => {
     return (
         <>
             <Head>
@@ -81,7 +80,7 @@ const Home: NextPage = ({ products }: any) => {
                         <ProductCard key={product!.id}>
                             <strong>{product!.name}</strong> <br />
                             <Image
-                                blurDataURL="../public/images/dummy-bottle-loader.png"
+                                blurDataURL="../images/dummy-bottle-loader.png"
                                 placeholder="blur"
                                 width="189"
                                 height="189"
@@ -89,7 +88,7 @@ const Home: NextPage = ({ products }: any) => {
                             />
                             {product.price.toLocaleString("en-gb", {
                                 style: "currency",
-                                currency: "GBP"
+                                currency: currency[0].id
                             })}
                             <Button>Add to Basket</Button>
                         </ProductCard>
@@ -103,7 +102,7 @@ const Home: NextPage = ({ products }: any) => {
 
 export default Home;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const { data } = await client.query({
         query: gql`
             query GetProducts {
@@ -113,12 +112,16 @@ export async function getStaticProps() {
                     nutrients
                     price
                 }
+                currency {
+                    id
+                }
             }
         `
     });
     return {
         props: {
-            products: data.products
+            products: data.products,
+            currency: data.currency
         }
     };
 }
