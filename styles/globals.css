@@ -12,6 +12,10 @@ html, body {
     font-family: SofiaPro Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+body {
+    height: 100vh;
+}
+
 @font-face {
     font-family: Hurme;
     src: url(../public/fonts/hurme-geometric-bold.woff2);

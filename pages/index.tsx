@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 import { gql } from "@apollo/client";
 import styled from "styled-components";
 import client from "../lib/apolloClient";
@@ -93,6 +94,7 @@ const Home: NextPage = ({ products }: any) => {
                     ))}
                 </Grid>
             </Main>
+            <Footer />
         </>
     );
 };
