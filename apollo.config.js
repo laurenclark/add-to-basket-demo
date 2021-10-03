@@ -4,7 +4,7 @@ module.exports = {
             name: "add-to-basket-demo",
             localSchemaFile: "./schema.json"
         },
-        includes: ["./src/**/*.{js,ts,tsx}"],
+        includes: ["pages/**/*.{ts,tsx,js,jsx,graphql}"],
         excludes: ["**/__tests__/**"]
     }
 };
