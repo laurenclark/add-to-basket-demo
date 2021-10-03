@@ -12,6 +12,7 @@ const Main = styled.main`
     margin: 2rem auto 4rem;
     max-width: 90vw;
     width: 1200px;
+    min-height: 50vh;
     h1 {
         @media screen and (min-width: 992px) {
             max-width: 450px;

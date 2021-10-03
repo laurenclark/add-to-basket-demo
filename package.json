@@ -6,6 +6,8 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
+        "fetch-schema": "npx apollo schema:download --endpoint=https://vitl-hasura.herokuapp.com/v1/graphql graphql-schema.json",
+        "generate-types" : "npx apollo codegen:generate --localSchemaFile=graphql-schema.json --target=typescript --tagName=gql",
         "lint": "next lint"
     },
     "dependencies": {
