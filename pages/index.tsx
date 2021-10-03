@@ -5,7 +5,7 @@ import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { gql, useQuery } from "@apollo/client";
 import dummyImage from "../public/images/dummy-bottle.png";
-import { GetProducts } from "./__generated__/GetProducts";
+import { GetProducts } from "./__generated__/getProducts";
 import { ThreeDots } from "react-loading-icons";
 import {
     Loader,
