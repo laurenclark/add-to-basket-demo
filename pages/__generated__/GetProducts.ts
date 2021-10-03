@@ -8,25 +8,25 @@
 // ====================================================
 
 export interface GetProducts_products {
-  __typename: "products";
-  id: string;
-  name: string | null;
-  nutrients: any | null;
-  price: any | null;
+    __typename: "products";
+    id: string;
+    name: string | null;
+    nutrients: any | null;
+    price: any | null;
 }
 
 export interface GetProducts_currency {
-  __typename: "currency";
-  id: string;
+    __typename: "currency";
+    id: string;
 }
 
 export interface GetProducts {
-  /**
-   * fetch data from the table: "products"
-   */
-  products: GetProducts_products[];
-  /**
-   * fetch data from the table: "currency"
-   */
-  currency: GetProducts_currency[];
+    /**
+     * fetch data from the table: "products"
+     */
+    products: GetProducts_products[];
+    /**
+     * fetch data from the table: "currency"
+     */
+    currency: GetProducts_currency[];
 }
