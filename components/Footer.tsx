@@ -1,3 +1,4 @@
+/// <reference types="styled-components/cssprop" />
 import { FC } from "react";
 import * as _ from "styled-components/cssprop";
 
