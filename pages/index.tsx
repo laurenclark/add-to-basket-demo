@@ -76,7 +76,7 @@ const Home: NextPage = ({ products, currency }: any) => {
             <Main>
                 <h1>Live life better with personalised nutrition</h1>
                 <Grid>
-                    {products.map((product: []) => (
+                    {products.map((product: any) => (
                         <ProductCard key={product!.id}>
                             <strong>{product!.name}</strong> <br />
                             <Image

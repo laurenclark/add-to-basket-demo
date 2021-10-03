@@ -1,27 +1,29 @@
 {
-  "name": "add-to-basket-demo",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@apollo/client": "^3.4.15",
-    "graphql": "^15.6.0",
-    "next": "11.1.2",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "styled-components": "^5.3.1"
-  },
-  "devDependencies": {
-    "@types/react": "17.0.25",
-    "@types/styled-components": "^5.1.14",
-    "babel-plugin-styled-components": "^1.13.2",
-    "eslint": "7.32.0",
-    "eslint-config-next": "11.1.2",
-    "typescript": "4.4.3"
-  }
+    "name": "add-to-basket-demo",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@apollo/client": "^3.4.15",
+        "graphql": "^15.6.0",
+        "next": "11.1.2",
+        "react": "17.0.2",
+        "react-dom": "17.0.2",
+        "styled-components": "^5.3.1"
+    },
+    "devDependencies": {
+        "@types/graphql": "^14.5.0",
+        "@types/react": "17.0.25",
+        "@types/styled-components": "^5.1.14",
+        "apollo": "^2.33.6",
+        "babel-plugin-styled-components": "^1.13.2",
+        "eslint": "7.32.0",
+        "eslint-config-next": "11.1.2",
+        "typescript": "4.4.3"
+    }
 }
