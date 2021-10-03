@@ -6,7 +6,15 @@ import Footer from "../components/Footer";
 import { gql, useQuery } from "@apollo/client";
 import dummyImage from "../public/images/dummy-bottle.png";
 import { GetProducts } from "./__generated__/GetProducts";
-import { Main, Grid, ProductCard, Button } from "./indexStyles";
+import { ThreeDots } from "react-loading-icons";
+import {
+    Loader,
+    brandPrimary,
+    Main,
+    Grid,
+    ProductCard,
+    Button
+} from "./indexStyles";
 
 const FetchProductsWithCurrency = gql`
     query fetchProductsWithCurrency {
@@ -48,10 +56,25 @@ const Home: NextPage = () => {
             <Navigation />
             <Main>
                 <h1>Live life better with personalised nutrition</h1>
+                {loading && (
+                    <Loader>
+                        <ThreeDots
+                            fill={brandPrimary}
+                            fillOpacity={1}
+                            height="4em"
+                            speed={1}
+                            stroke="transparent"
+                            strokeOpacity={1}
+                            style={{
+                                margin: "0 auto"
+                            }}
+                        />
+                        <h3>Loading...</h3>
+                    </Loader>
+                )}
                 <Grid>
-                    {loading && <div>Loading...</div>}
                     {data &&
-                        data!.products.map((product: any) => (
+                        data!.products.map((product) => (
                             <ProductCard key={product!.id}>
                                 <strong>{product!.name}</strong> <br />
                                 <Image
