@@ -64,6 +64,8 @@ const Navigation: FC = () => {
             <VitlLogo src="../images/vitl_logo.svg" alt="Vitl Logo" />
             <CartIcon>
                 <img
+                    width="20"
+                    height="20"
                     src="../images/icon-cart.svg"
                     alt="Line icon showing a cart"
                 />
