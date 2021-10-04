@@ -4,7 +4,7 @@ import Navigation from "../components/Navigation";
 import ProductDisplay from "../components/ProductDisplay/ProductDisplay";
 import Footer from "../components/Footer";
 import styled from "styled-components";
-import CartPane from "../components/CartPane/CartPane";
+import BasketPane from "../components/BasketPane/BasketPane";
 
 const Main = styled.main`
     margin: 2rem auto 4rem;
@@ -40,7 +40,7 @@ const Home: NextPage = () => {
                 <ProductDisplay />
             </Main>
             <Footer />
-            <CartPane />
+            <BasketPane />
         </>
     );
 };

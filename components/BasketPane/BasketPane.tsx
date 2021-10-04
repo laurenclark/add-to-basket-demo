@@ -55,7 +55,7 @@ const CloseButton = styled.div`
     right: 40px;
 `;
 
-const CartPane = () => {
+const BasketPane = () => {
     // @ts-ignore
     const { isHidden, setIsHidden } = useContext(BasketContext);
 
@@ -70,4 +70,4 @@ const CartPane = () => {
     );
 };
 
-export default CartPane;
+export default BasketPane;
