@@ -1,59 +1,17 @@
-import { useContext } from "react";
-import styled from "styled-components";
+import React, { useContext } from "react";
+import Image from "next/image";
+import dummyImage from "../../public/images/dummy-bottle.png";
 import { BasketContext } from "../../context/basketContext";
-
-const CartDrawer = styled.div`
-    width: 500px;
-    max-width: 100%;
-    background-color: white;
-    position: absolute;
-    z-index: 5;
-    right: 0;
-    top: 0;
-    position: fixed;
-    height: 100vh;
-    padding: 1em;
-    h2 {
-        font-size: 48px;
-        text-align: center;
-    }
-`;
-
-const CartBackground = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(51, 51, 51, 0.5);
-    -webkit-animation: 0.5s modalFadeIn;
-    animation: 0.5s modalFadeIn;
-    overflow: hidden;
-    @keyframes modalFadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
-`;
-
-const CloseButton = styled.div`
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 36px;
-    font-family: Hurme, SofiaProBold, Helvetica, Arial, Sans-Serif;
-    cursor: pointer;
-    transition: 0.3s color ease;
-    color: #333;
-    width: 40px;
-    height: 40px;
-    top: 20px;
-    right: 40px;
-`;
+import {
+    CartBackground,
+    CartDrawer,
+    CloseButton,
+    BasketListBG,
+    BasketControls,
+    BasketItem,
+    BasketUnorderedList,
+    RemoveProductButton
+} from "./BasketPaneStyles";
 
 const BasketPane = () => {
     // @ts-ignore
@@ -67,10 +25,41 @@ const BasketPane = () => {
                 <CloseButton onClick={setIsHidden}>×</CloseButton>
                 <h2>Your Basket</h2>
                 <div>
-                    {productsInBasket.map((product: any) => (
-                        <pre>{JSON.stringify(product, null, 4)}</pre>
-                    ))}
-                    ;
+                    <BasketUnorderedList>
+                        {productsInBasket.map((product: any) => (
+                            <BasketItem>
+                                <BasketListBG
+                                    css={`
+                                        flex: 0 1 150px;
+                                        margin-right: 2px;
+                                    `}>
+                                    <Image
+                                        blurDataURL="../images/dummy-bottle-loader.png"
+                                        placeholder="blur"
+                                        width="189"
+                                        height="189"
+                                        alt={`Image of a vitamin bottle with the title ${
+                                            product!.name
+                                        }`}
+                                        title="Dummy bottle image"
+                                        src={dummyImage}
+                                    />
+                                </BasketListBG>
+                                <BasketListBG
+                                    css={`
+                                        padding: 26px 15px 16px 21px;
+                                    `}>
+                                    <p>{product.name}</p>
+                                    <RemoveProductButton>×</RemoveProductButton>
+                                    <BasketControls>
+                                        <div>-</div>
+                                        <div>1</div>
+                                        <div>+</div>
+                                    </BasketControls>
+                                </BasketListBG>
+                            </BasketItem>
+                        ))}
+                    </BasketUnorderedList>
                 </div>
             </CartDrawer>
         </>
