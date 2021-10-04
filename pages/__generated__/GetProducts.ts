@@ -4,10 +4,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: getProducts
+// GraphQL query operation: GetProducts
 // ====================================================
 
-export interface getProducts_products {
+export interface GetProducts_products {
   __typename: "products";
   id: string;
   name: string | null;
@@ -15,18 +15,18 @@ export interface getProducts_products {
   price: any | null;
 }
 
-export interface getProducts_currency {
+export interface GetProducts_currency {
   __typename: "currency";
   id: string;
 }
 
-export interface getProducts {
+export interface GetProducts {
   /**
    * fetch data from the table: "products"
    */
-  products: getProducts_products[];
+  products: GetProducts_products[];
   /**
    * fetch data from the table: "currency"
    */
-  currency: getProducts_currency[];
+  currency: GetProducts_currency[];
 }

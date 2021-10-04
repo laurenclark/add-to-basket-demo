@@ -1,16 +1,5 @@
 import styled from "styled-components";
 
-export const brandPrimary = "#ffd326";
-
-export const Loader = styled.div`
-    height: 35vh;
-    display: grid;
-    place-items: center;
-    h3 {
-        color: ${brandPrimary};
-    }
-`;
-
 export const Main = styled.main`
     margin: 2rem auto 4rem;
     max-width: 90vw;
@@ -52,7 +41,7 @@ export const Button = styled.button`
     padding-left: 15px;
     padding-right: 15px;
     font-size: 18px;
-    background-color: ${brandPrimary};
+    background-color: #ffd326;
     border: none;
     &:hover {
         color: #333;
