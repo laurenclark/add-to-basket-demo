@@ -5,7 +5,7 @@ import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { gql, useQuery } from "@apollo/client";
 import dummyImage from "../public/images/dummy-bottle.png";
-import { GetProducts } from "./__generated__/getProducts";
+import { getProducts as FetchProductsWithCurrency } from "../__generated__/getProducts";
 import { ThreeDots } from "react-loading-icons";
 import {
     Loader,
@@ -16,8 +16,8 @@ import {
     Button
 } from "./indexStyles";
 
-const FetchProductsWithCurrency = gql`
-    query fetchProductsWithCurrency {
+const getProducts = gql`
+    query getProducts {
         products {
             id
             name
@@ -31,9 +31,8 @@ const FetchProductsWithCurrency = gql`
 `;
 
 const Home: NextPage = () => {
-    const { data, loading, error } = useQuery<GetProducts>(
-        FetchProductsWithCurrency
-    );
+    const { data, loading, error } =
+        useQuery<FetchProductsWithCurrency>(getProducts);
 
     if (error) {
         console.error(error);
@@ -74,7 +73,7 @@ const Home: NextPage = () => {
                 )}
                 <Grid>
                     {data &&
-                        data!.products.map((product) => (
+                        data!.products.map((product: any) => (
                             <ProductCard key={product!.id}>
                                 <strong>{product!.name}</strong> <br />
                                 <Image
