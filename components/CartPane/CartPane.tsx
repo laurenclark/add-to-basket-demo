@@ -1,5 +1,5 @@
-import { useState } from "react";
 import styled from "styled-components";
+import { useToggle } from "../../hooks/useToggle";
 
 const CartDrawer = styled.div`
     width: 500px;
@@ -35,14 +35,11 @@ const CartBackground = styled.div`
 `;
 
 const CartPane = () => {
-    const [isToggled, setIsToggled] = useState(false);
-    function toggleCartPane() {
-        setIsToggled(true);
-    }
+    const [isHidden, setIsHidden] = useToggle(true);
     return (
         <>
-            <CartBackground />
-            <CartDrawer></CartDrawer>
+            <CartBackground onClick={setIsHidden} hidden={isHidden} />
+            <CartDrawer hidden={isHidden}></CartDrawer>
         </>
     );
 };
