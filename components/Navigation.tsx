@@ -1,5 +1,6 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import styled from "styled-components";
+import { BasketContext } from "../context/basketContext";
 
 const NavContainer = styled.nav`
     background-color: #fff;
@@ -59,10 +60,12 @@ const CartIcon = styled.div`
 `;
 
 const Navigation: FC = () => {
+    // @ts-ignore
+    const { isHidden, setIsHidden } = useContext(BasketContext);
     return (
         <NavContainer>
             <VitlLogo src="../images/vitl_logo.svg" alt="Vitl Logo" />
-            <CartIcon>
+            <CartIcon onClick={() => setIsHidden(!isHidden)}>
                 <img
                     width="20"
                     height="20"

@@ -1,5 +1,6 @@
+import { useContext } from "react";
 import styled from "styled-components";
-import { useToggle } from "../../hooks/useToggle";
+import { BasketContext } from "../../context/basketContext";
 
 const CartDrawer = styled.div`
     width: 500px;
@@ -35,11 +36,13 @@ const CartBackground = styled.div`
 `;
 
 const CartPane = () => {
-    const [isHidden, setIsHidden] = useToggle(true);
+    // @ts-ignore
+    const { isHidden, setIsHidden } = useContext(BasketContext);
+
     return (
         <>
-            <CartBackground onClick={setIsHidden} hidden={isHidden} />
-            <CartDrawer hidden={isHidden}></CartDrawer>
+            <CartBackground onClick={setIsHidden} hidden={!isHidden} />
+            <CartDrawer hidden={!isHidden}></CartDrawer>
         </>
     );
 };
