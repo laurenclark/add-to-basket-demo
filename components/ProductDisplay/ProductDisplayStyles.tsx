@@ -8,6 +8,7 @@ export const Loader = styled.div`
     place-items: center;
     h3 {
         color: ${brandPrimary};
+        font-size: 40px;
     }
 `;
 

@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Navigation from "../components/Navigation";
-import ProductDisplay from "../components/ProductDisplay";
+import ProductDisplay from "../components/ProductDisplay/ProductDisplay";
 import Footer from "../components/Footer";
 import styled from "styled-components";
 
@@ -9,7 +9,7 @@ const Main = styled.main`
     margin: 2rem auto 4rem;
     max-width: 90vw;
     width: 1200px;
-    min-height: 50vh;
+    min-height: 60vh;
     h1 {
         @media screen and (min-width: 992px) {
             max-width: 450px;
