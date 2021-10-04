@@ -14,7 +14,13 @@ import {
 const ProductDisplay: FC = () => {
     const { data, loading, error } = useQuery<GetProducts>(GET_PRODUCT_DATA);
 
-    if (error) return <p>:( an error happened</p>;
+    if (error)
+        return (
+            <h2>
+                😱 an error ocurred while <pre>Fetching Products</pre> please
+                check your internet connection, and refresh the page.
+            </h2>
+        );
 
     if (loading) {
         return (
@@ -50,7 +56,7 @@ const ProductDisplay: FC = () => {
                         />
                         {product.price.toLocaleString("en-gb", {
                             style: "currency",
-                            currency: data?.currency[0].id
+                            currency: data!.currency[0].id
                         })}
                         <Button>Add to Basket</Button>
                     </ProductCard>
