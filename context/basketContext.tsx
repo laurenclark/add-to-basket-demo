@@ -1,4 +1,4 @@
-import { useState, createContext, useContext, FC } from "react";
+import { useState, createContext, FC } from "react";
 import { useToggle } from "../hooks/useToggle";
 
 interface BasketContext {

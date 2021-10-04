@@ -13,6 +13,10 @@ const CartDrawer = styled.div`
     position: fixed;
     height: 100vh;
     padding: 1em;
+    h2 {
+        font-size: 48px;
+        text-align: center;
+    }
 `;
 
 const CartBackground = styled.div`
@@ -35,6 +39,22 @@ const CartBackground = styled.div`
     }
 `;
 
+const CloseButton = styled.div`
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-family: Hurme, SofiaProBold, Helvetica, Arial, Sans-Serif;
+    cursor: pointer;
+    transition: 0.3s color ease;
+    color: #333;
+    width: 40px;
+    height: 40px;
+    top: 20px;
+    right: 40px;
+`;
+
 const CartPane = () => {
     // @ts-ignore
     const { isHidden, setIsHidden } = useContext(BasketContext);
@@ -42,7 +62,10 @@ const CartPane = () => {
     return (
         <>
             <CartBackground onClick={setIsHidden} hidden={!isHidden} />
-            <CartDrawer hidden={!isHidden}></CartDrawer>
+            <CartDrawer hidden={!isHidden}>
+                <CloseButton onClick={setIsHidden}>×</CloseButton>
+                <h2>Your Basket</h2>
+            </CartDrawer>
         </>
     );
 };
