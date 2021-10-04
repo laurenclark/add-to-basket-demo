@@ -57,7 +57,8 @@ const CloseButton = styled.div`
 
 const BasketPane = () => {
     // @ts-ignore
-    const { isHidden, setIsHidden } = useContext(BasketContext);
+    const { isHidden, setIsHidden, productsInBasket } =
+        useContext(BasketContext);
 
     return (
         <>
@@ -65,6 +66,12 @@ const BasketPane = () => {
             <CartDrawer hidden={!isHidden}>
                 <CloseButton onClick={setIsHidden}>×</CloseButton>
                 <h2>Your Basket</h2>
+                <div>
+                    {productsInBasket.map((product: any) => (
+                        <pre>{JSON.stringify(product, null, 4)}</pre>
+                    ))}
+                    ;
+                </div>
             </CartDrawer>
         </>
     );

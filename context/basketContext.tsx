@@ -4,7 +4,7 @@ import { useToggle } from "../hooks/useToggle";
 interface BasketContext {
     product: {};
     // @ts-ignore
-    addProductToBasket?: () => void;
+    addProductToBasket: () => void;
     isHidden: Boolean;
 }
 
@@ -15,14 +15,20 @@ const BasketProvider: FC = ({ children }) => {
     const [productsInBasket, setProductsInBasket] = useState([]);
 
     const addProductToBasket = (product: {}) => {
+        setIsHidden(false);
         // @ts-ignore
         setProductsInBasket((prevItems: any) => [...prevItems, product]);
     };
 
     return (
         <BasketContext.Provider
-            // @ts-ignore
-            value={{ addProductToBasket, setIsHidden, isHidden }}>
+            value={{
+                // @ts-ignore
+                addProductToBasket,
+                setIsHidden,
+                isHidden,
+                productsInBasket
+            }}>
             {children}
         </BasketContext.Provider>
     );

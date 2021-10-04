@@ -1,7 +1,8 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import Image from "next/image";
 import { gql, useQuery } from "@apollo/client";
 import dummyImage from "../../public/images/dummy-bottle.png";
+import { BasketContext } from "../../context/basketContext";
 import { ThreeDots } from "react-loading-icons";
 import {
     brandPrimary,
@@ -13,7 +14,7 @@ import {
 
 const ProductDisplay: FC = () => {
     const { data, loading, error } = useQuery<GetProducts>(GET_PRODUCT_DATA);
-
+    const { addProductToBasket } = useContext(BasketContext);
     if (error)
         return (
             <h2>
@@ -44,7 +45,7 @@ const ProductDisplay: FC = () => {
     return (
         <Grid>
             {data &&
-                data?.products.map((product: any) => (
+                data!.products.map((product: any) => (
                     <ProductCard key={product!.id}>
                         <strong>{product!.name}</strong> <br />
                         <Image
@@ -62,7 +63,13 @@ const ProductDisplay: FC = () => {
                             style: "currency",
                             currency: data!.currency[0].id
                         })}
-                        <Button>Add to Basket</Button>
+                        <Button
+                            onClick={
+                                // @ts-ignore
+                                () => addProductToBasket(product)
+                            }>
+                            Add to Basket
+                        </Button>
                     </ProductCard>
                 ))}
         </Grid>
