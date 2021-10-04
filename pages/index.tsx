@@ -5,11 +5,19 @@ import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { gql, useQuery } from "@apollo/client";
 import dummyImage from "../public/images/dummy-bottle.png";
-import { GetProducts } from "./__generated__/GetProducts";
-import { Main, Grid, ProductCard, Button } from "./indexStyles";
+import { getProducts as FetchProductsWithCurrency } from "../__generated__/getProducts";
+import { ThreeDots } from "react-loading-icons";
+import {
+    Loader,
+    brandPrimary,
+    Main,
+    Grid,
+    ProductCard,
+    Button
+} from "./indexStyles";
 
-const FetchProductsWithCurrency = gql`
-    query fetchProductsWithCurrency {
+const getProducts = gql`
+    query getProducts {
         products {
             id
             name
@@ -23,9 +31,8 @@ const FetchProductsWithCurrency = gql`
 `;
 
 const Home: NextPage = () => {
-    const { data, loading, error } = useQuery<GetProducts>(
-        FetchProductsWithCurrency
-    );
+    const { data, loading, error } =
+        useQuery<FetchProductsWithCurrency>(getProducts);
 
     if (error) {
         console.error(error);
@@ -48,8 +55,23 @@ const Home: NextPage = () => {
             <Navigation />
             <Main>
                 <h1>Live life better with personalised nutrition</h1>
+                {loading && (
+                    <Loader>
+                        <ThreeDots
+                            fill={brandPrimary}
+                            fillOpacity={1}
+                            height="4em"
+                            speed={1}
+                            stroke="transparent"
+                            strokeOpacity={1}
+                            style={{
+                                margin: "0 auto"
+                            }}
+                        />
+                        <h3>Loading...</h3>
+                    </Loader>
+                )}
                 <Grid>
-                    {loading && <div>Loading...</div>}
                     {data &&
                         data!.products.map((product: any) => (
                             <ProductCard key={product!.id}>
