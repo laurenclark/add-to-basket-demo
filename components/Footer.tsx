@@ -1,10 +1,17 @@
 /// <reference types="styled-components/cssprop" />
 import { FC } from "react";
+import { CSSProp } from "styled-components";
 import * as _ from "styled-components/cssprop";
 
 const footerStyles = `
     bottom: 0;
 `;
+
+declare module "react" {
+    interface Attributes {
+        css?: CSSProp;
+    }
+}
 
 const Footer: FC = () => {
     return (
