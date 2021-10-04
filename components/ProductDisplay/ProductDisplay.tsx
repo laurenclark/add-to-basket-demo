@@ -52,6 +52,10 @@ const ProductDisplay: FC = () => {
                             placeholder="blur"
                             width="189"
                             height="189"
+                            alt={`Image of a vitamin bottle with the title ${
+                                product!.name
+                            }`}
+                            title="Dummy bottle image"
                             src={dummyImage}
                         />
                         {product.price.toLocaleString("en-gb", {
