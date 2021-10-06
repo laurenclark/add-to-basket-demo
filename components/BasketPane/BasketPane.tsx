@@ -14,7 +14,6 @@ import {
 } from "./BasketPaneStyles";
 
 const BasketPane = () => {
-    // @ts-ignore
     const {
         isHidden,
         setIsHidden,
@@ -23,6 +22,14 @@ const BasketPane = () => {
         removeProductFromBasket,
         changeProductQuantity
     } = useContext(BasketContext);
+
+    const incrementProduct = (product: {}) => {
+        setProductsInBasket(changeProductQuantity(product));
+    };
+
+    const decrementProduct = (product: {}) => {
+        setProductsInBasket(changeProductQuantity(product, "minus"));
+    };
 
     return (
         <>
@@ -50,6 +57,7 @@ const BasketPane = () => {
                             <BasketListBG css={BGItemStyles}>
                                 <p>{product.name}</p>
                                 <RemoveProductButton
+                                    aria-label={`Remove ${product.name} from basket`}
                                     onClick={() =>
                                         removeProductFromBasket(product.id)
                                     }>
@@ -57,25 +65,17 @@ const BasketPane = () => {
                                 </RemoveProductButton>
                                 <BasketControls>
                                     <button
+                                        aria-label={`Decrease ${product.name} by one`}
                                         onClick={() =>
-                                            setProductsInBasket(
-                                                changeProductQuantity(
-                                                    product,
-                                                    "minus"
-                                                )
-                                            )
+                                            decrementProduct(product)
                                         }>
                                         -
                                     </button>
                                     <div>{product.quantity}</div>
                                     <button
+                                        aria-label={`Increase ${product.name} by one`}
                                         onClick={() =>
-                                            setProductsInBasket(
-                                                changeProductQuantity(
-                                                    product,
-                                                    "plus"
-                                                )
-                                            )
+                                            incrementProduct(product)
                                         }>
                                         +
                                     </button>

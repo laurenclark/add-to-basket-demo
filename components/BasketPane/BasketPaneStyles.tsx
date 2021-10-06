@@ -79,12 +79,24 @@ export const BasketControls = styled.div`
     background: #fff;
     text-align: center;
     align-self: flex-end;
-    div {
-        font-size: 16px;
-        flex: 0 0 40px;
+    font-size: 16px;
+    button {
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
         height: 40px;
         width: 40px;
         cursor: pointer;
+        border-radius: 0;
+        &:focus {
+            background: rgba(0, 0, 0, 0.1);
+        }
+    }
+    div {
+        flex: 0 0 40px;
+        height: 40px;
+        width: 40px;
         line-height: 2;
     }
 `;
