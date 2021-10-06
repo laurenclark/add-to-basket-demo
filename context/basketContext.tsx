@@ -9,20 +9,21 @@ interface BasketContext {
     isHidden: Boolean;
 }
 
+interface Nutrients {
+    id: string;
+    amount: number;
+}
+
 const BasketContext = createContext<Partial<BasketContext>>({});
 
 const BasketProvider: FC = ({ children }) => {
-    const { data, error } = useQuery(GET_UPPER_LIMIT_DATA);
+    const { data: TULData, loading, error } = useQuery(GET_UPPER_LIMIT_DATA);
     const [isHidden, setIsHidden] = useToggle(false);
     const [productsInBasket, setProductsInBasket] = useState([]);
-    const [TULData, setTULData] = useState([]);
 
-    useEffect(() => {
-        if (error) {
-            throw error;
-        }
-        setTULData(data);
-    }, []);
+    if (error) {
+        throw error;
+    }
 
     function changeProductQuantity(
         product: {},
@@ -55,6 +56,10 @@ const BasketProvider: FC = ({ children }) => {
             // @ts-ignore
             newProductArray.push({ ...product, quantity });
         }
+
+        // @ts-ignore
+
+        console.log(validateTUL(newProductArray));
         return newProductArray;
     }
 
@@ -64,15 +69,35 @@ const BasketProvider: FC = ({ children }) => {
         );
     }
 
-    // GET TUL LIMITS
-    // ITERATE THROUGH EACH PRODUCT IN THE BASKET AND GET ITS NUTRIENT TOTALS
-    // CHECK AGAINST TUL TOTALS
-    // VALIDATE ON ALL CHANGES
+    function validateTUL(productsArray: any) {
+        const nutrientsInBasket = productsArray
+            .map(({ nutrients, quantity }: any) => [
+                JSON.parse(nutrients).map(({ amount, id }: Nutrients) => {
+                    return {
+                        id: amount * quantity
+                    };
+                })
+            ])
+            .flat(2);
+
+        const combineDuplicateNutrients = Array.from(
+            nutrientsInBasket.reduce(
+                (accumulator: any, { id, amount }: any) =>
+                    accumulator.set(id, (accumulator.get(id) ?? 0) + amount),
+                new Map()
+            ),
+            ([id, amount]) => ({ id, amount })
+        );
+
+        // @ts-ignore
+        return ":(";
+        // return combineDuplicateNutrients;
+    }
 
     function getTotalQuantities(productsArray = productsInBasket) {
-        return productsArray.reduce(function (prev, cur) {
+        return productsArray.reduce((accumulator, current) => {
             // @ts-ignore
-            return prev + cur!.quantity;
+            return accumulator + current!.quantity;
         }, 0);
     }
 
