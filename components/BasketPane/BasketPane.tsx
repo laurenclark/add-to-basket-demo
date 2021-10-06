@@ -27,7 +27,7 @@ const BasketPane = () => {
 
                 <BasketUnorderedList>
                     {productsInBasket.map((product: any) => (
-                        <BasketItem>
+                        <BasketItem key={product.id}>
                             <BasketListBG css={BGImageStyles}>
                                 <Image
                                     blurDataURL="../images/dummy-bottle-loader.png"
