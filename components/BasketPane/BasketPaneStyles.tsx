@@ -86,6 +86,7 @@ export const BasketControls = styled.div`
         border: none;
         padding: 0;
         margin: 0;
+        font-size: 20px;
         height: 40px;
         width: 40px;
         cursor: pointer;
@@ -98,7 +99,8 @@ export const BasketControls = styled.div`
         flex: 0 0 40px;
         height: 40px;
         width: 40px;
-        line-height: 2;
+        line-height: 1.5;
+        font-size: 25px;
     }
 `;
 
