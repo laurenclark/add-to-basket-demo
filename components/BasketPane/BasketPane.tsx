@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Image from "next/image";
 import dummyImage from "../../public/images/dummy-bottle.png";
 import { BasketContext } from "../../context/basketContext";
+import { currencyFormat } from "../../lib/helpers";
 import {
     CartBackground,
     CartDrawer,
@@ -80,6 +81,11 @@ const BasketPane = () => {
                                         +
                                     </button>
                                 </BasketControls>
+                                <p className="price-display">
+                                    {currencyFormat(
+                                        product.price * product.quantity
+                                    )}
+                                </p>
                             </BasketListBG>
                         </BasketItem>
                     ))}

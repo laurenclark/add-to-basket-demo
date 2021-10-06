@@ -14,8 +14,17 @@ export const Loader = styled.div`
 
 export const Grid = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+    grid-template-columns: repeat(auto-fit, minmax(270px, 2fr));
     grid-gap: 1rem;
+`;
+
+export const ProductName = styled.p`
+    display: block;
+    margin-bottom: 1em;
+    font-size: 20px;
+    margin-top: 0;
+    font-family: hurm;
+    font-weight: 900;
 `;
 
 export const ProductCard = styled.div`

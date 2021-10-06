@@ -37,3 +37,16 @@ a {
 h1, h2, h3, h4, h5, h6 {
     font-family: Hurme;
 }
+
+p.price-display {
+    text-align: right;
+    display: block;
+    margin-bottom: 1em;
+    font-size: 20px;
+}
+
+.image-center {
+    position: relative;
+    display: grid;
+    place-items: center;
+}

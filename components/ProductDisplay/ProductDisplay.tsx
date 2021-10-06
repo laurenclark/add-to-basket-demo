@@ -4,11 +4,13 @@ import { gql, useQuery } from "@apollo/client";
 import dummyImage from "../../public/images/dummy-bottle.png";
 import { BasketContext } from "../../context/basketContext";
 import { ThreeDots } from "react-loading-icons";
+import { currencyFormat } from "../../lib/helpers";
 import {
     brandPrimary,
     Loader,
     Button,
     Grid,
+    ProductName,
     ProductCard
 } from "./ProductDisplayStyles";
 
@@ -54,22 +56,24 @@ const ProductDisplay: FC = () => {
             {data &&
                 data!.products.map((product: any) => (
                     <ProductCard key={product!.id}>
-                        <strong>{product!.name}</strong> <br />
-                        <Image
-                            blurDataURL="../images/dummy-bottle-loader.png"
-                            placeholder="blur"
-                            width="189"
-                            height="189"
-                            alt={`Image of a vitamin bottle with the title ${
-                                product!.name
-                            }`}
-                            title="Dummy bottle image"
-                            src={dummyImage}
-                        />
-                        {product.price.toLocaleString("en-gb", {
-                            style: "currency",
-                            currency: data!.currency[0].id
-                        })}
+                        <ProductName>{product!.name}</ProductName>
+                        <div className="image-center">
+                            <Image
+                                blurDataURL="../images/dummy-bottle-loader.png"
+                                placeholder="blur"
+                                width="250"
+                                height="250"
+                                alt={`Image of a vitamin bottle with the title ${
+                                    product!.name
+                                }`}
+                                layout="intrinsic"
+                                title="Dummy bottle image"
+                                src={dummyImage}
+                            />
+                        </div>
+                        <p className="price-display">
+                            {currencyFormat(product.price)}
+                        </p>
                         <Button onClick={() => addProductToBasket(product)}>
                             Add to Basket
                         </Button>

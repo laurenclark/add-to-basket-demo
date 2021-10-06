@@ -37,7 +37,7 @@ const BasketProvider: FC = ({ children }) => {
         if (isSKUInBasket) {
             switch (plusOrMinus) {
                 case "minus":
-                    if (isSKUInBasket.quantity > 0) {
+                    if (isSKUInBasket.quantity > 1) {
                         isSKUInBasket.quantity =
                             isSKUInBasket.quantity - quantity;
                     }
@@ -63,12 +63,19 @@ const BasketProvider: FC = ({ children }) => {
     // CHECK AGAINST TUL TOTALS
     // VALIDATE ON ALL CHANGES
 
+    function getTotalQuantities(productsArray = productsInBasket) {
+        return productsArray.reduce(function (prev, cur) {
+            return prev + cur!.quantity;
+        }, 0);
+    }
+
     return (
         <BasketContext.Provider
             value={{
                 // @ts-ignore
                 changeProductQuantity,
                 removeProductFromBasket,
+                getTotalQuantities,
                 setIsHidden,
                 isHidden,
                 productsInBasket,

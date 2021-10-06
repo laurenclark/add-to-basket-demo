@@ -80,6 +80,7 @@ export const BasketControls = styled.div`
     text-align: center;
     align-self: flex-end;
     font-size: 16px;
+    margin-bottom: 1.5em;
     button {
         background: transparent;
         border: none;
