@@ -48,17 +48,19 @@ const BasketPane = () => {
                     {productsInBasket.map((product: any) => (
                         <BasketItem key={product.id}>
                             <BasketListBG css={BGImageStyles}>
-                                <Image
-                                    blurDataURL="../images/dummy-bottle-loader.png"
-                                    placeholder="blur"
-                                    width="189"
-                                    height="189"
-                                    alt={`Image of a vitamin bottle with the title ${
-                                        product!.name
-                                    }`}
-                                    title="Dummy bottle image"
-                                    src={dummyImage}
-                                />
+                                <div className="image-center">
+                                    <Image
+                                        blurDataURL="../images/dummy-bottle-loader.png"
+                                        placeholder="blur"
+                                        width="189"
+                                        height="189"
+                                        alt={`Image of a vitamin bottle with the title ${
+                                            product!.name
+                                        }`}
+                                        title="Dummy bottle image"
+                                        src={dummyImage}
+                                    />
+                                </div>
                             </BasketListBG>
                             <BasketListBG css={BGItemStyles}>
                                 <p>{product.name}</p>
@@ -104,7 +106,7 @@ const BGItemStyles = `
     padding: 26px 15px 16px 21px;
     `;
 const BGImageStyles = `
-    flex: 0 1 150px;
+    flex: 0 1 175px;
     margin-right: 2px;
     `;
 
