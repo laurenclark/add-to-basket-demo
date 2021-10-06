@@ -1,24 +1,10 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Navigation from "../components/Navigation";
+import Navigation from "../components/Navigation/Navigation";
 import ProductDisplay from "../components/ProductDisplay/ProductDisplay";
 import Footer from "../components/Footer";
 import styled from "styled-components";
 import BasketPane from "../components/BasketPane/BasketPane";
-
-const Main = styled.main`
-    margin: 2rem auto 4rem;
-    max-width: 90vw;
-    width: 1200px;
-    min-height: 60vh;
-    h1 {
-        @media screen and (min-width: 992px) {
-            max-width: 450px;
-            font-size: 2.5vw;
-            line-height: 1.2;
-        }
-    }
-`;
 
 const Home: NextPage = () => {
     return (
@@ -44,5 +30,19 @@ const Home: NextPage = () => {
         </>
     );
 };
+
+const Main = styled.main`
+    margin: 2rem auto 4rem;
+    max-width: 90vw;
+    width: 1200px;
+    min-height: 60vh;
+    h1 {
+        @media screen and (min-width: 992px) {
+            max-width: 450px;
+            font-size: 2.5vw;
+            line-height: 1.2;
+        }
+    }
+`;
 
 export default Home;

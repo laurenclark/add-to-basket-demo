@@ -24,46 +24,46 @@ const BasketPane = () => {
             <CartDrawer hidden={!isHidden}>
                 <CloseButton onClick={setIsHidden}>×</CloseButton>
                 <h2>Your Basket</h2>
-                <div>
-                    <BasketUnorderedList>
-                        {productsInBasket.map((product: any) => (
-                            <BasketItem>
-                                <BasketListBG
-                                    css={`
-                                        flex: 0 1 150px;
-                                        margin-right: 2px;
-                                    `}>
-                                    <Image
-                                        blurDataURL="../images/dummy-bottle-loader.png"
-                                        placeholder="blur"
-                                        width="189"
-                                        height="189"
-                                        alt={`Image of a vitamin bottle with the title ${
-                                            product!.name
-                                        }`}
-                                        title="Dummy bottle image"
-                                        src={dummyImage}
-                                    />
-                                </BasketListBG>
-                                <BasketListBG
-                                    css={`
-                                        padding: 26px 15px 16px 21px;
-                                    `}>
-                                    <p>{product.name}</p>
-                                    <RemoveProductButton>×</RemoveProductButton>
-                                    <BasketControls>
-                                        <div>-</div>
-                                        <div>1</div>
-                                        <div>+</div>
-                                    </BasketControls>
-                                </BasketListBG>
-                            </BasketItem>
-                        ))}
-                    </BasketUnorderedList>
-                </div>
+
+                <BasketUnorderedList>
+                    {productsInBasket.map((product: any) => (
+                        <BasketItem>
+                            <BasketListBG css={BGImageStyles}>
+                                <Image
+                                    blurDataURL="../images/dummy-bottle-loader.png"
+                                    placeholder="blur"
+                                    width="189"
+                                    height="189"
+                                    alt={`Image of a vitamin bottle with the title ${
+                                        product!.name
+                                    }`}
+                                    title="Dummy bottle image"
+                                    src={dummyImage}
+                                />
+                            </BasketListBG>
+                            <BasketListBG css={BGItemStyles}>
+                                <p>{product.name}</p>
+                                <RemoveProductButton>×</RemoveProductButton>
+                                <BasketControls>
+                                    <div>-</div>
+                                    <div>1</div>
+                                    <div>+</div>
+                                </BasketControls>
+                            </BasketListBG>
+                        </BasketItem>
+                    ))}
+                </BasketUnorderedList>
             </CartDrawer>
         </>
     );
 };
+
+const BGItemStyles = `
+    padding: 26px 15px 16px 21px;
+    `;
+const BGImageStyles = `
+    flex: 0 1 150px;
+    margin-right: 2px;
+    `;
 
 export default BasketPane;

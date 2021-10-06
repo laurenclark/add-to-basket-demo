@@ -78,7 +78,7 @@ const ProductDisplay: FC = () => {
 
 export default ProductDisplay;
 
-export interface GetProducts_products {
+interface GetProducts_products {
     __typename: "products";
     id: string;
     name: string | null;
@@ -86,12 +86,12 @@ export interface GetProducts_products {
     price: any | null;
 }
 
-export interface GetProducts_currency {
+interface GetProducts_currency {
     __typename: "currency";
     id: string;
 }
 
-export interface GetProducts {
+interface GetProducts {
     products: GetProducts_products[];
     currency: GetProducts_currency[];
 }

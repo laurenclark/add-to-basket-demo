@@ -1,8 +1,6 @@
-import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { BasketContext } from "../context/basketContext";
 
-const NavContainer = styled.nav`
+export const NavContainer = styled.nav`
     background-color: #fff;
     box-shadow: 0 0.3px 0.3px rgb(0 0 0 / 2%), 0 0.9px 0.9px rgb(0 0 0 / 3%),
         0 1.8px 1.8px rgb(0 0 0 / 4%), 0 3.7px 3.7px rgb(0 0 0 / 5%),
@@ -14,7 +12,7 @@ const NavContainer = styled.nav`
     height: 75px;
 `;
 
-const VitlLogo = styled.img`
+export const VitlLogo = styled.img`
     position: absolute;
     left: 50%;
     -ms-transform: translateX(-50%);
@@ -24,7 +22,7 @@ const VitlLogo = styled.img`
     padding-top: 6px;
 `;
 
-const CartIcon = styled.div`
+export const CartIcon = styled.div`
     position: absolute;
     width: 20px;
     height: 20px;
@@ -58,26 +56,3 @@ const CartIcon = styled.div`
         }
     }
 `;
-
-const Navigation: FC = () => {
-    // @ts-ignore
-    const { setIsHidden, productsInBasket } = useContext(BasketContext);
-    return (
-        <NavContainer>
-            <VitlLogo src="../images/vitl_logo.svg" alt="Vitl Logo" />
-            <CartIcon onClick={setIsHidden}>
-                <img
-                    width="20"
-                    height="20"
-                    src="../images/icon-cart.svg"
-                    alt="Line icon showing a cart"
-                />
-                {productsInBasket.length > 0 && (
-                    <span>{productsInBasket.length}</span>
-                )}
-            </CartIcon>
-        </NavContainer>
-    );
-};
-
-export default Navigation;
