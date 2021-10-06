@@ -15,7 +15,7 @@ import {
 
 const BasketPane = () => {
     // @ts-ignore
-    const { isHidden, setIsHidden, productsInBasket } =
+    const { isHidden, setIsHidden, productsInBasket, removeProductFromBasket } =
         useContext(BasketContext);
 
     return (
@@ -43,7 +43,12 @@ const BasketPane = () => {
                             </BasketListBG>
                             <BasketListBG css={BGItemStyles}>
                                 <p>{product.name}</p>
-                                <RemoveProductButton>×</RemoveProductButton>
+                                <RemoveProductButton
+                                    onClick={() =>
+                                        removeProductFromBasket(product.id)
+                                    }>
+                                    ×
+                                </RemoveProductButton>
                                 <BasketControls>
                                     <div>-</div>
                                     <div>1</div>

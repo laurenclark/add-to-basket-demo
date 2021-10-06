@@ -3,16 +3,16 @@ import { useToggle } from "../hooks/useToggle";
 import { gql, useQuery } from "@apollo/client";
 
 interface BasketContext {
-    product: {};
-    // @ts-ignore
-    addProductToBasket: () => void;
+    product: {
+        id: string;
+    };
     isHidden: Boolean;
 }
 
 const BasketContext = createContext<Partial<BasketContext>>({});
 
 const BasketProvider: FC = ({ children }) => {
-    const { data, loading, error } = useQuery(GET_UPPER_LIMIT_DATA);
+    const { data, error } = useQuery(GET_UPPER_LIMIT_DATA);
     const [isHidden, setIsHidden] = useToggle(false);
     const [productsInBasket, setProductsInBasket] = useState([]);
     const [TULData, setTULData] = useState([]);
@@ -24,11 +24,17 @@ const BasketProvider: FC = ({ children }) => {
         setTULData(data);
     }, []);
 
-    const addProductToBasket = (product: {}) => {
+    function addProductToBasket(product: any) {
         setIsHidden(false);
         // @ts-ignore
         setProductsInBasket((prevItems: any) => [...prevItems, product]);
-    };
+    }
+
+    function removeProductFromBasket(productId: string) {
+        setProductsInBasket((prevItems: any) =>
+            prevItems.filter((item: any) => item.id !== productId)
+        );
+    }
 
     // GET TUL LIMITS
     // ITERATE THROUGH EACH PRODUCT IN THE BASKET AND GET ITS NUTRIENT TOTALS
@@ -40,6 +46,7 @@ const BasketProvider: FC = ({ children }) => {
             value={{
                 // @ts-ignore
                 addProductToBasket,
+                removeProductFromBasket,
                 setIsHidden,
                 isHidden,
                 productsInBasket
