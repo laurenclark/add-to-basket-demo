@@ -16,6 +16,7 @@ import {
 
 const ProductDisplay: FC = () => {
     const { data, loading, error } = useQuery<GetProducts>(GET_PRODUCT_DATA);
+    // @ts-ignore
     const { changeProductQuantity, setIsHidden, setProductsInBasket } =
         useContext(BasketContext);
 

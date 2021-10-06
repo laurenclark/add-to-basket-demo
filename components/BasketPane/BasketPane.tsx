@@ -17,10 +17,15 @@ import {
 const BasketPane = () => {
     const {
         isHidden,
+        // @ts-ignore
         setIsHidden,
+        // @ts-ignore
         productsInBasket,
+        // @ts-ignore
         setProductsInBasket,
+        // @ts-ignore
         removeProductFromBasket,
+        // @ts-ignore
         changeProductQuantity
     } = useContext(BasketContext);
 
