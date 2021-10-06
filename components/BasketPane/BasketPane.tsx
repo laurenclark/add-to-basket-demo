@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Image from "next/image";
 import dummyImage from "../../public/images/dummy-bottle.png";
 import { BasketContext } from "../../context/basketContext";
@@ -28,6 +28,10 @@ const BasketPane = () => {
         // @ts-ignore
         changeProductQuantity
     } = useContext(BasketContext);
+
+    useEffect(() => {
+        productsInBasket.length === 0 && setIsHidden(false);
+    }, [productsInBasket]);
 
     const incrementProduct = (product: {}) => {
         setProductsInBasket(changeProductQuantity(product));
