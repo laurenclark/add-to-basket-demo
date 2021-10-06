@@ -14,7 +14,9 @@ import {
 
 const ProductDisplay: FC = () => {
     const { data, loading, error } = useQuery<GetProducts>(GET_PRODUCT_DATA);
-    const { addProductToBasket } = useContext(BasketContext);
+    const { changeProductQuantity, setIsHidden, setProductsInBasket } =
+        useContext(BasketContext);
+
     if (error)
         return (
             <h2>
@@ -42,6 +44,11 @@ const ProductDisplay: FC = () => {
         );
     }
 
+    function addProductToBasket(product: any) {
+        setIsHidden(false);
+        setProductsInBasket(changeProductQuantity(product, 1));
+    }
+
     return (
         <Grid>
             {data &&
@@ -63,11 +70,7 @@ const ProductDisplay: FC = () => {
                             style: "currency",
                             currency: data!.currency[0].id
                         })}
-                        <Button
-                            onClick={
-                                // @ts-ignore
-                                () => addProductToBasket(product)
-                            }>
+                        <Button onClick={() => addProductToBasket(product)}>
                             Add to Basket
                         </Button>
                     </ProductCard>

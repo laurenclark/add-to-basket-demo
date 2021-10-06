@@ -15,8 +15,14 @@ import {
 
 const BasketPane = () => {
     // @ts-ignore
-    const { isHidden, setIsHidden, productsInBasket, removeProductFromBasket } =
-        useContext(BasketContext);
+    const {
+        isHidden,
+        setIsHidden,
+        productsInBasket,
+        setProductsInBasket,
+        removeProductFromBasket,
+        changeProductQuantity
+    } = useContext(BasketContext);
 
     return (
         <>
@@ -50,9 +56,29 @@ const BasketPane = () => {
                                     ×
                                 </RemoveProductButton>
                                 <BasketControls>
-                                    <div>-</div>
-                                    <div>1</div>
-                                    <div>+</div>
+                                    <button
+                                        onClick={() =>
+                                            setProductsInBasket(
+                                                changeProductQuantity(
+                                                    product,
+                                                    "minus"
+                                                )
+                                            )
+                                        }>
+                                        -
+                                    </button>
+                                    <div>{product.quantity}</div>
+                                    <button
+                                        onClick={() =>
+                                            setProductsInBasket(
+                                                changeProductQuantity(
+                                                    product,
+                                                    "plus"
+                                                )
+                                            )
+                                        }>
+                                        +
+                                    </button>
                                 </BasketControls>
                             </BasketListBG>
                         </BasketItem>

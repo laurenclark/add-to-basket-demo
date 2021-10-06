@@ -24,10 +24,32 @@ const BasketProvider: FC = ({ children }) => {
         setTULData(data);
     }, []);
 
-    function addProductToBasket(product: any) {
-        setIsHidden(false);
-        // @ts-ignore
-        setProductsInBasket((prevItems: any) => [...prevItems, product]);
+    function changeProductQuantity(
+        product: {},
+        plusOrMinus: string = "plus",
+        quantity: number = 1
+    ) {
+        const newProductArray = [...productsInBasket];
+        const isSKUInBasket = newProductArray.find(
+            (basketProduct: any) => basketProduct.name == product.name
+        );
+
+        if (isSKUInBasket) {
+            switch (plusOrMinus) {
+                case "minus":
+                    if (isSKUInBasket.quantity > 0) {
+                        isSKUInBasket.quantity =
+                            isSKUInBasket.quantity - quantity;
+                    }
+                    break;
+                default:
+                    isSKUInBasket.quantity = isSKUInBasket.quantity + quantity;
+                    break;
+            }
+        } else {
+            newProductArray.push({ ...product, quantity });
+        }
+        return newProductArray;
     }
 
     function removeProductFromBasket(productId: string) {
@@ -45,11 +67,12 @@ const BasketProvider: FC = ({ children }) => {
         <BasketContext.Provider
             value={{
                 // @ts-ignore
-                addProductToBasket,
+                changeProductQuantity,
                 removeProductFromBasket,
                 setIsHidden,
                 isHidden,
-                productsInBasket
+                productsInBasket,
+                setProductsInBasket
             }}>
             {children}
         </BasketContext.Provider>
