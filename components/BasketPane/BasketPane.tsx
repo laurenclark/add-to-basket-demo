@@ -33,6 +33,10 @@ const BasketPane = () => {
         productsInBasket.length === 0 && setIsHidden(false);
     }, [productsInBasket]);
 
+    useEffect(() => {
+        productsInBasket.length === 0 && setIsHidden(!isHidden);
+    }, []);
+
     const incrementProduct = (product: {}) => {
         setProductsInBasket(changeProductQuantity(product));
     };
