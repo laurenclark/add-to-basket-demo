@@ -1,6 +1,7 @@
 import { useState, useEffect, createContext, FC } from "react";
 import { useToggle } from "../hooks/useToggle";
 import { gql, useQuery } from "@apollo/client";
+import { toast } from "react-toastify";
 
 interface BasketContext {
     product: {
@@ -61,6 +62,20 @@ const BasketProvider: FC = ({ children }) => {
         if (validateTUL(newProductArray).length === 0) {
             return newProductArray;
         } else {
+            toast.error(
+                `You have exceeded the maximum amounts of: ${validateTUL(
+                    newProductArray
+                )}`,
+                {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined
+                }
+            );
             return productsInBasket;
         }
     }

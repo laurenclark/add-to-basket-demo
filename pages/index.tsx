@@ -5,6 +5,8 @@ import ProductDisplay from "../components/ProductDisplay/ProductDisplay";
 import Footer from "../components/Footer";
 import styled from "styled-components";
 import BasketPane from "../components/BasketPane/BasketPane";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home: NextPage = () => {
     return (
@@ -27,6 +29,17 @@ const Home: NextPage = () => {
             </Main>
             <Footer />
             <BasketPane />
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={true}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </>
     );
 };
