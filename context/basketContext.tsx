@@ -116,11 +116,11 @@ const BasketProvider: FC = ({ children }) => {
         function comparisonArray() {
             var newArr: [] = [];
             TULData.tolerableUpperLimits.forEach((tul: any) => {
-                combineDuplicateNutrients.forEach((noot: any) => {
-                    if (tul.id === noot.id) {
-                        if (noot.amount >= tul.amount) {
+                combineDuplicateNutrients.forEach((nutrient: any) => {
+                    if (tul.id === nutrient.id) {
+                        if (nutrient.amount >= tul.amount) {
                             // @ts-ignore
-                            newArr.push(noot.id);
+                            newArr.push(nutrient.id);
                         }
                     }
                 });
