@@ -17,12 +17,12 @@ interface Nutrients {
 const BasketContext = createContext<Partial<BasketContext>>({});
 
 const BasketProvider: FC = ({ children }) => {
-    const { data: TULData, loading, error } = useQuery(GET_UPPER_LIMIT_DATA);
+    const { data: TULData, error } = useQuery(GET_UPPER_LIMIT_DATA);
     const [isHidden, setIsHidden] = useToggle(false);
     const [productsInBasket, setProductsInBasket] = useState([]);
 
     if (error) {
-        throw error;
+        console.error(error);
     }
 
     function changeProductQuantity(
@@ -54,13 +54,15 @@ const BasketProvider: FC = ({ children }) => {
             }
         } else {
             // @ts-ignore
-            newProductArray.push({ ...product, quantity });
+            if (validateTUL(newProductArray).length === 0) {
+                newProductArray.push({ ...product, quantity });
+            }
         }
-
-        // @ts-ignore
-
-        console.log(validateTUL(newProductArray));
-        return newProductArray;
+        if (validateTUL(newProductArray).length === 0) {
+            return newProductArray;
+        } else {
+            return productsInBasket;
+        }
     }
 
     function removeProductFromBasket(productId: string) {
@@ -74,7 +76,8 @@ const BasketProvider: FC = ({ children }) => {
             .map(({ nutrients, quantity }: any) => [
                 JSON.parse(nutrients).map(({ amount, id }: Nutrients) => {
                     return {
-                        id: amount * quantity
+                        id,
+                        amount: amount * quantity
                     };
                 })
             ])
@@ -89,12 +92,25 @@ const BasketProvider: FC = ({ children }) => {
             ([id, amount]) => ({ id, amount })
         );
 
-        // @ts-ignore
-        return ":(";
-        // return combineDuplicateNutrients;
+        function comparisonArray() {
+            var newArr: [] = [];
+            TULData.tolerableUpperLimits.forEach((tul: any) => {
+                combineDuplicateNutrients.forEach((noot: any) => {
+                    if (tul.id === noot.id) {
+                        if (noot.amount >= tul.amount) {
+                            // @ts-ignore
+                            newArr.push(noot.id);
+                        }
+                    }
+                });
+            });
+            return newArr;
+        }
+        return comparisonArray();
     }
 
     function getTotalQuantities(productsArray = productsInBasket) {
+        console.log("fired");
         return productsArray.reduce((accumulator, current) => {
             // @ts-ignore
             return accumulator + current!.quantity;
