@@ -50,7 +50,10 @@ const BasketProvider: FC = ({ children }) => {
                     break;
                 default:
                     // @ts-ignore
-                    isSKUInBasket.quantity = isSKUInBasket.quantity + quantity;
+                    if (validateTUL(newProductArray).length === 0) {
+                        isSKUInBasket.quantity =
+                            isSKUInBasket.quantity + quantity;
+                    }
                     break;
             }
         } else {
@@ -61,6 +64,7 @@ const BasketProvider: FC = ({ children }) => {
             }
         }
         if (validateTUL(newProductArray).length === 0) {
+            console.log("New product");
             return newProductArray;
         } else {
             toast.error(
