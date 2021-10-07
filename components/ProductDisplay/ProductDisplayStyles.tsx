@@ -23,7 +23,8 @@ export const ProductName = styled.p`
     margin-bottom: 1em;
     font-size: 20px;
     margin-top: 0;
-    font-family: hurm;
+    font-family: Hurme, SofiaPro, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+        Fira Sans, Droid Sans, "Helvetica Neue", sans-serif;
     font-weight: 900;
 `;
 
@@ -35,6 +36,10 @@ export const ProductCard = styled.div`
 `;
 
 export const Button = styled.button`
+    color: black;
+    font-family: SofiaPro, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+        Fira Sans, Droid Sans, "Helvetica Neue", sans-serif;
+    font-weight: 500;
     position: relative;
     height: 50px;
     width: 100%;
