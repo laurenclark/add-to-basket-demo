@@ -110,7 +110,6 @@ const BasketProvider: FC = ({ children }) => {
     }
 
     function getTotalQuantities(productsArray = productsInBasket) {
-        console.log("fired");
         return productsArray.reduce((accumulator, current) => {
             // @ts-ignore
             return accumulator + current!.quantity;
