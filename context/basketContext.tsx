@@ -56,6 +56,7 @@ const BasketProvider: FC = ({ children }) => {
         } else {
             // @ts-ignore
             if (validateTUL(newProductArray).length === 0) {
+                // @ts-ignore
                 newProductArray.push({ ...product, quantity });
             }
         }
