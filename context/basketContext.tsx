@@ -49,9 +49,10 @@ const BasketProvider: FC = ({ children }) => {
                     }
                     break;
                 default:
-                    // @ts-ignore
                     if (validateTUL(newProductArray).length === 0) {
+                        // @ts-ignore
                         isSKUInBasket.quantity =
+                            // @ts-ignore
                             isSKUInBasket.quantity + quantity;
                     }
                     break;
