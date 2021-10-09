@@ -1,12 +1,12 @@
 ## Tech Stack & Process
 
-NextJS
-React (hooks/functional)
-TypeScript
-Context API
-Custom Hooks
-Apollo Client
-GraphQL 
+- NextJS
+- React (hooks/functional)
+- TypeScript
+- Context API
+- Custom Hooks
+- Apollo Client
+- GraphQL 
 
 I loaded the `fe-test.json` through Hasura into a Postgress DB which then got transformed into a GraphQL schema and API that can be access publicly at [https://vitl-hasura.herokuapp.com/v1/graphql](https://vitl-hasura.herokuapp.com/v1/graphql)
 
