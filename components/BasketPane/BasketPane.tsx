@@ -38,11 +38,26 @@ const BasketPane = () => {
     }, []);
 
     const incrementProduct = (product: {}) => {
-        setProductsInBasket(changeProductQuantity(product));
+        // @ts-ignore
+        setProductsInBasket((prev) => [
+            ...prev.filter((item: any) => item.id !== product.id),
+            { ...product, quantity: product.quantity + 1 }
+        ]);
     };
 
     const decrementProduct = (product: {}) => {
-        setProductsInBasket(changeProductQuantity(product, "minus"));
+        // @ts-ignore
+        setProductsInBasket((prev: any) => [
+            ...prev.filter((item: any) => item.id !== product.id),
+            {
+                ...product,
+                quantity:
+                    product.quantity > 1
+                        ? product.quantity - 1
+                        : // @ts-ignore
+                          removeProductFromBasket(product.id)
+            }
+        ]);
     };
 
     return (

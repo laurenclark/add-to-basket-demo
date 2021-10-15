@@ -47,9 +47,10 @@ const ProductDisplay: FC = () => {
         );
     }
 
-    function addProductToBasket(product: any) {
+    function addProductToBasket(product: any, quantity: number = 1) {
+        const newProduct = { ...product, quantity };
         setIsHidden(false);
-        setProductsInBasket(changeProductQuantity(product, 1));
+        setProductsInBasket((prev) => [...prev, newProduct]);
     }
 
     return (
@@ -90,8 +91,9 @@ interface GetProducts_products {
     __typename: "products";
     id: string;
     name: string | null;
-    nutrients: any | null;
-    price: any | null;
+    nutrients: [] | null;
+    price: number | null;
+    quantity: number | null;
 }
 
 interface GetProducts_currency {

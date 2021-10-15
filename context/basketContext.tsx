@@ -8,8 +8,8 @@ interface BasketContext {
     changeProductQuantity: () => number;
     removeProductFromBasket: () => void;
     getTotalQuantities: () => number;
-    setIsHidden: () => boolean;
-    setProductsInBasket: () => void | [];
+    setIsHidden?: () => boolean;
+    setProductsInBasket?: () => void | [];
 }
 interface Nutrients {
     id: string;
@@ -42,6 +42,45 @@ const BasketProvider: FC = ({ children }) => {
         );
     }
 
+    function changeProductQuantity(
+        product: {},
+        plusOrMinus: string = "plus",
+        quantity: number = 1
+    ) {
+        const newProductArray = [...productsInBasket];
+        const isSKUInBasket = newProductArray.find(
+            (basketProduct: any) => basketProduct.name == product.name
+        );
+
+        if (isSKUInBasket) {
+            switch (plusOrMinus) {
+                case "minus":
+                    // @ts-ignore
+                    if (isSKUInBasket.quantity > 1) {
+                        // @ts-ignore
+                        isSKUInBasket.quantity =
+                            // @ts-ignore
+                            isSKUInBasket.quantity - quantity;
+                    }
+                    break;
+                default:
+                    // if (validateTUL(newProductArray).length === 0) {
+                    // @ts-ignore
+                    isSKUInBasket.quantity =
+                        // @ts-ignore
+                        isSKUInBasket.quantity + quantity;
+                    break;
+            }
+        } else {
+            newProductArray.push({ ...product, quantity });
+        }
+        return newProductArray;
+    }
+
+    // function changeProductQuantity() {
+    //     return null;
+    // }
+
     function validateTUL(productsArray: any) {
         const nutrientsInBasket = productsArray
             .map(({ nutrients, quantity }: any) => [
@@ -54,29 +93,38 @@ const BasketProvider: FC = ({ children }) => {
             ])
             .flat(2);
 
-        const combineDuplicateNutrients = Array.from(
-            nutrientsInBasket.reduce(
-                (accumulator: any, { id, amount }: any) =>
-                    accumulator.set(id, (accumulator.get(id) ?? 0) + amount),
-                new Map()
-            ),
-            ([id, amount]) => ({ id, amount })
+        // const combineDuplicateNutrients = Array.from(
+        //     nutrientsInBasket.reduce(
+        //         (accumulator: any, { id, amount }: any) =>
+        //             accumulator.set(id, (accumulator.get(id) ?? 0) + amount),
+        //         new Map()
+        //     ),
+        //     ([id, amount]) => ({ id, amount })
+        // );
+
+        const combineDuplicateNutrients = nutrientsInBasket.reduce(
+            (acc, obj) => {
+                return acc + obj;
+            },
+            {}
         );
 
-        function comparisonArray() {
-            var newArr: [] = [];
-            TULData.tolerableUpperLimits.forEach((tul: Nutrients) => {
-                combineDuplicateNutrients.forEach((nutrient: Nutrients) => {
-                    if (tul.id === nutrient.id) {
-                        if (nutrient.amount >= tul.amount) {
-                            newArr.push(nutrient.id);
-                        }
-                    }
-                });
-            });
-            return newArr;
-        }
-        return comparisonArray();
+        console.log(combineDuplicateNutrients);
+
+        // function comparisonArray() {
+        //     var newArr: [] = [];
+        //     TULData.tolerableUpperLimits.forEach((tul: Nutrients) => {
+        //         combineDuplicateNutrients.forEach((nutrient: Nutrients) => {
+        //             if (tul.id === nutrient.id) {
+        //                 if (nutrient.amount >= tul.amount) {
+        //                     newArr.push(nutrient.id);
+        //                 }
+        //             }
+        //         });
+        //     });
+        //     return newArr;
+        // }
+        // return comparisonArray();
     }
 
     function getTotalQuantities(productsArray = productsInBasket) {
