@@ -12,7 +12,7 @@ export const NavContainer = styled.nav`
     height: 75px;
 `;
 
-export const VitlLogo = styled.img`
+export const VitsLogo = styled.img`
     position: absolute;
     left: 50%;
     -ms-transform: translateX(-50%);

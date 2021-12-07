@@ -17,10 +17,6 @@ const Home: NextPage = () => {
                     name="description"
                     content="Feel 100% more often with filler-free, non-GMO nutritional supplements made from the highest quality vitamins &amp; minerals to keep your body functioning its best."
                 />
-                <link
-                    rel="icon"
-                    href="https://vitl.com/favicon.ico?v=00BoO63pAe"
-                />
             </Head>
             <Navigation />
             <Main>

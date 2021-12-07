@@ -1,13 +1,13 @@
 import React, { FC, useContext } from "react";
 import { BasketContext } from "../../context/basketContext";
-import { NavContainer, VitlLogo, CartIcon } from "./NavigationStyles";
+import { NavContainer, VitsLogo, CartIcon } from "./NavigationStyles";
 
 const Navigation: FC = () => {
     // @ts-ignore
     const { setIsHidden, getTotalQuantities } = useContext(BasketContext);
     return (
         <NavContainer>
-            <VitlLogo src="../images/vitl_logo.svg" alt="Vitl Logo" />
+            <VitsLogo src="../images/vits_logo.svg" alt="Vits Logo" />
             <CartIcon onClick={setIsHidden}>
                 <img
                     width="20"
