@@ -8,10 +8,6 @@
 - Apollo Client
 - GraphQL 
 
-I loaded the `fe-test.json` through Hasura into a Postgress DB which then got transformed into a GraphQL schema and API that can be access publicly at [https://vitl-hasura.herokuapp.com/v1/graphql](https://vitl-hasura.herokuapp.com/v1/graphql)
-
-Data payload types should be generated from the GraphQL schema, but there were some out of scope TS issues (💆‍♀️) 
-
 
 ## Version Info
 
